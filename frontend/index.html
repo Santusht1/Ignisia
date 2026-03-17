@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Sales Intelligence Platform</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <span class="logo-icon">✨</span>
+                <h2>SalesAI</h2>
+            </div>
+            
+            <div class="upload-section">
+                <h3>Data Source</h3>
+                <p>Upload your historical sales data (.csv) to generate AI insights.</p>
+                <form id="upload-form">
+                    <label for="csv-file" class="file-upload-label">
+                        <span id="file-name">Choose CSV file</span>
+                        <input type="file" id="csv-file" accept=".csv" required>
+                    </label>
+                    <button type="submit" id="analyze-btn" class="btn primary-btn">Generate Insights</button>
+                </form>
+                <div id="upload-status"></div>
+            </div>
+
+            <div class="model-info" id="model-info" style="display: none;">
+                <h3>Active Model</h3>
+                <div class="metric-card">
+                    <span class="metric-label">Algorithm</span>
+                    <span class="metric-value" id="model-name">-</span>
+                </div>
+                <div class="metrics-row">
+                    <div class="metric-mini">
+                        <span>R² Score</span>
+                        <strong id="model-r2">-</strong>
+                    </div>
+                    <div class="metric-mini">
+                        <span>MAE</span>
+                        <strong id="model-mae">-</strong>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <h1>Intelligence Dashboard</h1>
+                <div class="header-actions">
+                    <span class="status-indicator">● System Ready</span>
+                </div>
+            </header>
+
+            <div class="content-grid" id="dashboard-content" style="opacity: 0.3; pointer-events: none;">
+                
+                <!-- Charts Section -->
+                <div class="charts-panel glass-panel">
+                    <div class="panel-header">
+                        <h2>Sales Forecast Details</h2>
+                        <div class="toggle-group">
+                            <button class="active">Revenue</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- AI Insights Section -->
+                <div class="insights-panel glass-panel">
+                    <h2>Generated Insights</h2>
+                    <div id="insights-container" class="insights-list">
+                        <div class="empty-state">
+                            <p>Upload data to see AI-generated insights here.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Assistant -->
+                <div class="chat-panel glass-panel">
+                    <h2>AI Assistant</h2>
+                    <div class="chat-container">
+                        <div class="chat-messages" id="chat-messages">
+                            <div class="message assistant">
+                                <p>Hello! I'm your AI Sales Assistant. Upload your sales data to get started.</p>
+                            </div>
+                        </div>
+                        <form id="chat-form" class="chat-input-area">
+                            <input type="text" id="chat-input" placeholder="Ask about trends, predictions, or metrics..." required>
+                            <button type="submit" class="btn icon-btn">➤</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Feature Importance -->
+                <div class="explainability-panel glass-panel">
+                    <h2>Why did the AI predict this?</h2>
+                    <p class="sub-text">Relative impact of factors driving sales</p>
+                    <div class="chart-container half-height">
+                        <canvas id="importanceChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
