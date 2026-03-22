@@ -43,7 +43,7 @@ uploadForm.addEventListener('submit', async (e) => {
     uploadStatus.style.color = 'inherit';
 
     try {
-        const response = await fetch('/api/upload', {
+        const response = await fetch('https://ignisia-0xsc.onrender.com/api/upload', {
             method: 'POST',
             body: formData
         });
@@ -75,7 +75,7 @@ chatForm.addEventListener('submit', async (e) => {
     chatInput.value = '';
 
     try {
-        const response = await fetch('/api/chat', {
+        const response = await fetch('https://ignisia-0xsc.onrender.com/api/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ message: msg })
