@@ -78,7 +78,7 @@ class SalesPredictor:
             if df[col].dtype in ['float64', 'int64']:
                 df[col] = df[col].fillna(df[col].median())
             else:
-                df[col] = df[col].fillna(method='ffill')
+                df[col] = df[col].ffill()
 
         # Aggregate daily
         daily_sales = df.groupby(date_col)[target_col].sum().reset_index()
@@ -94,7 +94,7 @@ class SalesPredictor:
         daily_sales['year'] = daily_sales[date_col].dt.year
         
         # Week of year for annual patterns
-        daily_sales['week_of_year'] = daily_sales[date_col].dt.isocalendar().week
+        daily_sales['week_of_year'] = daily_sales[date_col].dt.isocalendar().week.astype(int)
 
         # Multiple lag features
         for lag in [1, 2, 3, 7, 14]:
@@ -116,7 +116,7 @@ class SalesPredictor:
         daily_sales['trend_30'] = daily_sales[target_col] - daily_sales['rolling_mean_30']
 
         # Fill NaN values from feature creation
-        daily_sales = daily_sales.fillna(method='bfill').fillna(method='ffill')
+        daily_sales = daily_sales.bfill().ffill()
 
         self.features = [
             'day_of_week', 'month', 'day', 'is_weekend', 'quarter', 'week_of_year',
