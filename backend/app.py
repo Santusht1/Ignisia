@@ -14,7 +14,7 @@ app = FastAPI(title="AI Sales Platform")
 # CORS for local dev
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["https://ignisia-six.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -63,6 +63,6 @@ async def chat(request: ChatRequest):
     return {"response": reply}
 
 # Serve static files from frontend
-frontend_dir = os.path.join(os.path.dirname(__file__), '..', 'frontend')
-os.makedirs(frontend_dir, exist_ok=True)
-app.mount("/", StaticFiles(directory=frontend_dir, html=True), name="frontend")
+#frontend_dir = os.path.join(os.path.dirname(__file__), '..', 'frontend')
+#os.makedirs(frontend_dir, exist_ok=True)
+#app.mount("/", StaticFiles(directory=frontend_dir, html=True), name="frontend")
