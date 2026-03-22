@@ -7,3 +7,5 @@ python-multipart
 google-generativeai
 python-dotenv
 prophet
+statsmodels
+pmdarima
